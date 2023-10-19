@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Cropping and Collage</title>
+</head>
+<body>
+    <h1>Upload an Image for Cropping and Collage</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" accept="image/*" style="display:none;">
+        <div id="dropArea" style="border: 2px dashed #ccc; padding: 20px; text-align: center; cursor: pointer;">
+            <p>Drag and drop an image file here, or click to select one.</p>
+        </div>
+        <br>
+        <button type="submit">Upload and Create Collage</button>
+    </form>
+
+    <script>
+        // Handle drag-and-drop functionality
+        var dropArea = document.getElementById('dropArea');
+
+        dropArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            dropArea.style.backgroundColor = '#f0f0f0';
+        });
+
+        dropArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            dropArea.style.backgroundColor = '#fff';
+        });
+
+        dropArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            dropArea.style.backgroundColor = '#fff';
+            var fileInput = document.getElementById('fileInput');
+            fileInput.files = e.dataTransfer.files;
+        });
+
+        // Click to trigger file input
+        dropArea.addEventListener('click', function(e) {
+            var fileInput = document.getElementById('fileInput');
+            fileInput.click();
+        });
+    </script>
+</body>
+</html>
